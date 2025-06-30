@@ -6,7 +6,32 @@ Check **[`Dynamic-Url-Managment_Documentation.docx`](./Dynamic-Url-Managment_Doc
 
 ## 📥 Download Hook
 
-Download [`useConfig.js`](./useConfig.js) from this repository and **use it directly in your React projects** for dynamic backend URL management without hardcoding.
+Download [`react-config-hook`](https://www.npmjs.com/package/react-config-hook) from this npm package using [`npm i react-config-hook`] or [`yarn add react-config-hook`] and **use it directly in your React projects** for dynamic backend URL management without hardcoding.
+
+## ⚡ Usage Example
+
+```jsx
+import { useConfig } from 'react-config-hook';
+
+function Login() {
+  const { config, error, loading } = useConfig();
+
+  if (loading) return <div>Loading configuration...</div>;
+  if (error) return <div>Error loading config: {error}</div>;
+
+  const serviceUrl = config.<keyname-you-enter-in-service-via-add : note- remove <> this. like example bottom i show.>;
+  const serviceUrl = config.ms; // like this
+
+  const handleLogin = async () => {
+    await axios.post(`${serviceUrl}/login`, { username, password });
+    // continue your login flow...
+  };
+
+  return (
+    <button onClick={handleLogin}>Login</button>
+  );
+}
+```
 
 ✅ **Import it into your components, fetch your dynamic service URLs, and replace hardcoded URLs with environment-based, managed endpoints easily.**
 
@@ -17,7 +42,6 @@ To enable **dynamic backend URL management in your React projects using `useConf
 ```env
 REACT_APP_APP_NAME=Your_App_Name_From_Admin_Panel
 REACT_APP_ENVIRONMENT=Your_Environment_From_Admin_Panel
-REACT_APP_CONFIG_API=https://backend-managment-backend.onrender.com/api/configs
 REACT_APP_CONFIG_API_KEY=Your_API_Key
 
 ⚠️ **Note:**  
